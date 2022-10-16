@@ -2,9 +2,15 @@
 
 import 'package:bonfire_app/components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:reddit_client/reddit_client.dart';
 
 class TextPostCard extends StatelessWidget {
-  const TextPostCard({super.key});
+  const TextPostCard({
+    required this.post,
+    super.key,
+  });
+
+  final RedditLinkData post;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class TextPostCard extends StatelessWidget {
           // ignore: prefer_const_literals_to_create_immutables
           children: [
             Text(
-              'Golden hour',
+              post.title,
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
@@ -25,15 +31,12 @@ class TextPostCard extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             Text(
-              'Very long example text. This is an example.'
-              'Very long example text. This is an example.'
-              'Very long example text. This is an example.'
-              'Very long example text. This is an example.',
+              post.selftext ?? '',
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 10.0),
-            PostCardFooter(),
+            if (post.selftext != null) const SizedBox(height: 10.0),
+            PostCardFooter(post: post),
           ],
         ),
       ),

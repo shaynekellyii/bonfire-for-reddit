@@ -1,16 +1,19 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:bonfire_app/components/components.dart';
 import 'package:bonfire_app/utilities/bonfire_fonts.dart';
 import 'package:bonfire_app/utilities/bonfire_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:reddit_client/reddit_client.dart';
+
+final redditClientProvider = Provider((_) => RedditClient());
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: const BonfireApp()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class BonfireApp extends StatelessWidget {
+  const BonfireApp({super.key});
 
   // This widget is the root of your application.
   @override

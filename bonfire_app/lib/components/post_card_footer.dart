@@ -1,16 +1,28 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:reddit_client/reddit_client.dart';
 
 class PostCardFooter extends StatelessWidget {
-  const PostCardFooter({super.key});
+  const PostCardFooter({
+    required this.post,
+    super.key,
+  });
+
+  final RedditLinkData post;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       // ignore: prefer_const_literals_to_create_immutables
       children: [
-        Expanded(child: _PostMetadata()),
+        Expanded(
+          child: _PostMetadata(
+            score: post.score,
+            comments: post.numComments,
+            author: post.author,
+          ),
+        ),
         _ButtonRow(),
       ],
     );
@@ -19,19 +31,29 @@ class PostCardFooter extends StatelessWidget {
 
 class _PostMetadata extends StatelessWidget {
   const _PostMetadata({
+    required this.score,
+    required this.comments,
+    required this.author,
     Key? key,
   }) : super(key: key);
+
+  final int score;
+  final int comments;
+  final String author;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       // ignore: prefer_const_literals_to_create_immutables
       children: [
-        IconText(iconData: Icons.arrow_upward, text: '10.0k'),
+        IconText(iconData: Icons.arrow_upward, text: score.toString()),
         const SizedBox(width: 5.0),
-        IconText(iconData: Icons.mode_comment_outlined, text: '250'),
+        IconText(
+          iconData: Icons.mode_comment_outlined,
+          text: comments.toString(),
+        ),
         const SizedBox(width: 5.0),
-        IconText(iconData: Icons.person_outlined, text: '/u/myuser'),
+        IconText(iconData: Icons.person_outlined, text: author),
       ],
     );
   }
