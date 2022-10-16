@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:bonfire_app/components/components.dart';
+import 'package:bonfire_app/utilities/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:reddit_client/reddit_client.dart';
 
@@ -14,14 +15,16 @@ class ImagePostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final previewUrl = post.previewImgUrl;
     return BaseCard(
       child: Stack(
         children: [
-          Positioned.fill(
-            child: SizedBox(
-              child: Image.network(post.url, fit: BoxFit.cover),
+          if (previewUrl != null)
+            Positioned.fill(
+              child: SizedBox(
+                child: Image.network(previewUrl, fit: BoxFit.cover),
+              ),
             ),
-          ),
           Positioned(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),

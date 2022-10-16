@@ -8,7 +8,9 @@ part of 'reddit_preview.dart';
 
 _$_RedditPreview _$$_RedditPreviewFromJson(Map<String, dynamic> json) =>
     _$_RedditPreview(
-      images: json['images'],
+      images: (json['images'] as List<dynamic>)
+          .map((e) => RedditImage.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_RedditPreviewToJson(_$_RedditPreview instance) =>

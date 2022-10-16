@@ -20,8 +20,7 @@ RedditPreview _$RedditPreviewFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RedditPreview {
-// TODO: Finish model
-  Object? get images => throw _privateConstructorUsedError;
+  List<RedditImage> get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +34,7 @@ abstract class $RedditPreviewCopyWith<$Res> {
           RedditPreview value, $Res Function(RedditPreview) then) =
       _$RedditPreviewCopyWithImpl<$Res, RedditPreview>;
   @useResult
-  $Res call({Object? images});
+  $Res call({List<RedditImage> images});
 }
 
 /// @nodoc
@@ -51,10 +50,13 @@ class _$RedditPreviewCopyWithImpl<$Res, $Val extends RedditPreview>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? images = freezed,
+    Object? images = null,
   }) {
     return _then(_value.copyWith(
-      images: freezed == images ? _value.images : images,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<RedditImage>,
     ) as $Val);
   }
 }
@@ -67,7 +69,7 @@ abstract class _$$_RedditPreviewCopyWith<$Res>
       __$$_RedditPreviewCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Object? images});
+  $Res call({List<RedditImage> images});
 }
 
 /// @nodoc
@@ -81,10 +83,13 @@ class __$$_RedditPreviewCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? images = freezed,
+    Object? images = null,
   }) {
     return _then(_$_RedditPreview(
-      images: freezed == images ? _value.images : images,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<RedditImage>,
     ));
   }
 }
@@ -92,14 +97,18 @@ class __$$_RedditPreviewCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_RedditPreview implements _RedditPreview {
-  const _$_RedditPreview({required this.images});
+  const _$_RedditPreview({required final List<RedditImage> images})
+      : _images = images;
 
   factory _$_RedditPreview.fromJson(Map<String, dynamic> json) =>
       _$$_RedditPreviewFromJson(json);
 
-// TODO: Finish model
+  final List<RedditImage> _images;
   @override
-  final Object? images;
+  List<RedditImage> get images {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
 
   @override
   String toString() {
@@ -111,13 +120,13 @@ class _$_RedditPreview implements _RedditPreview {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RedditPreview &&
-            const DeepCollectionEquality().equals(other.images, images));
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(images));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
   @override
@@ -134,14 +143,14 @@ class _$_RedditPreview implements _RedditPreview {
 }
 
 abstract class _RedditPreview implements RedditPreview {
-  const factory _RedditPreview({required final Object? images}) =
+  const factory _RedditPreview({required final List<RedditImage> images}) =
       _$_RedditPreview;
 
   factory _RedditPreview.fromJson(Map<String, dynamic> json) =
       _$_RedditPreview.fromJson;
 
-  @override // TODO: Finish model
-  Object? get images;
+  @override
+  List<RedditImage> get images;
   @override
   @JsonKey(ignore: true)
   _$$_RedditPreviewCopyWith<_$_RedditPreview> get copyWith =>

@@ -29,7 +29,7 @@ class TextPostCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10.0),
+            if (post.selftext != null) const SizedBox(height: 10.0),
             Text(
               post.selftext ?? '',
               maxLines: 3,

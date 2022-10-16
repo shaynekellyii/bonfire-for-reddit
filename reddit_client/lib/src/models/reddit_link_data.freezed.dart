@@ -77,11 +77,8 @@ mixin _$RedditLinkData {
   int get numCrossposts => throw _privateConstructorUsedError;
   @JsonKey(name: 'over_18')
   bool get over18 => throw _privateConstructorUsedError;
-  @JsonKey(name: 'parent_whitelist_status')
-  String get parentWhitelistStatus => throw _privateConstructorUsedError;
   String get permalink => throw _privateConstructorUsedError;
   bool get pinned => throw _privateConstructorUsedError;
-  int get pwls => throw _privateConstructorUsedError;
   bool get quarantine => throw _privateConstructorUsedError;
   bool get saved => throw _privateConstructorUsedError;
   int get score => throw _privateConstructorUsedError;
@@ -132,11 +129,15 @@ mixin _$RedditLinkData {
   String? get linkFlairTemplateId => throw _privateConstructorUsedError;
   @JsonKey(name: 'link_flair_text')
   String? get linkFlairText => throw _privateConstructorUsedError;
+  RedditMedia? get media => throw _privateConstructorUsedError;
   @JsonKey(name: 'num_reports')
   int? get numReports => throw _privateConstructorUsedError;
+  @JsonKey(name: 'parent_whitelist_status')
+  String? get parentWhitelistStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'post_hint')
   String? get postHint => throw _privateConstructorUsedError;
   RedditPreview? get preview => throw _privateConstructorUsedError;
+  int? get pwls => throw _privateConstructorUsedError;
   @JsonKey(name: 'thumbnail_height')
   int? get thumbnailHeight => throw _privateConstructorUsedError;
   @JsonKey(name: 'thumbnail_width')
@@ -171,7 +172,6 @@ mixin _$RedditLinkData {
   Object? get gildings => throw _privateConstructorUsedError;
   Object? get edited => throw _privateConstructorUsedError;
   Object? get likes => throw _privateConstructorUsedError;
-  Object? get media => throw _privateConstructorUsedError;
   @JsonKey(name: 'media_embed')
   Object? get mediaEmbed => throw _privateConstructorUsedError;
   @JsonKey(name: 'mod_note')
@@ -273,11 +273,8 @@ abstract class $RedditLinkDataCopyWith<$Res> {
           int numCrossposts,
       @JsonKey(name: 'over_18')
           bool over18,
-      @JsonKey(name: 'parent_whitelist_status')
-          String parentWhitelistStatus,
       String permalink,
       bool pinned,
-      int pwls,
       bool quarantine,
       bool saved,
       int score,
@@ -328,11 +325,15 @@ abstract class $RedditLinkDataCopyWith<$Res> {
           String? linkFlairTemplateId,
       @JsonKey(name: 'link_flair_text')
           String? linkFlairText,
+      RedditMedia? media,
       @JsonKey(name: 'num_reports')
           int? numReports,
+      @JsonKey(name: 'parent_whitelist_status')
+          String? parentWhitelistStatus,
       @JsonKey(name: 'post_hint')
           String? postHint,
       RedditPreview? preview,
+      int? pwls,
       @JsonKey(name: 'thumbnail_height')
           int? thumbnailHeight,
       @JsonKey(name: 'thumbnail_width')
@@ -367,7 +368,6 @@ abstract class $RedditLinkDataCopyWith<$Res> {
       Object? gildings,
       Object? edited,
       Object? likes,
-      Object? media,
       @JsonKey(name: 'media_embed')
           Object? mediaEmbed,
       @JsonKey(name: 'mod_note')
@@ -399,6 +399,7 @@ abstract class $RedditLinkDataCopyWith<$Res> {
       @JsonKey(name: 'user_reports')
           Object? userReports});
 
+  $RedditMediaCopyWith<$Res>? get media;
   $RedditPreviewCopyWith<$Res>? get preview;
 }
 
@@ -449,10 +450,8 @@ class _$RedditLinkDataCopyWithImpl<$Res, $Val extends RedditLinkData>
     Object? numComments = null,
     Object? numCrossposts = null,
     Object? over18 = null,
-    Object? parentWhitelistStatus = null,
     Object? permalink = null,
     Object? pinned = null,
-    Object? pwls = null,
     Object? quarantine = null,
     Object? saved = null,
     Object? score = null,
@@ -484,9 +483,12 @@ class _$RedditLinkDataCopyWithImpl<$Res, $Val extends RedditLinkData>
     Object? linkFlairType = freezed,
     Object? linkFlairTemplateId = freezed,
     Object? linkFlairText = freezed,
+    Object? media = freezed,
     Object? numReports = freezed,
+    Object? parentWhitelistStatus = freezed,
     Object? postHint = freezed,
     Object? preview = freezed,
+    Object? pwls = freezed,
     Object? thumbnailHeight = freezed,
     Object? thumbnailWidth = freezed,
     Object? selftext = freezed,
@@ -507,7 +509,6 @@ class _$RedditLinkDataCopyWithImpl<$Res, $Val extends RedditLinkData>
     Object? gildings = freezed,
     Object? edited = freezed,
     Object? likes = freezed,
-    Object? media = freezed,
     Object? mediaEmbed = freezed,
     Object? modNote = freezed,
     Object? modReasonBy = freezed,
@@ -661,10 +662,6 @@ class _$RedditLinkDataCopyWithImpl<$Res, $Val extends RedditLinkData>
           ? _value.over18
           : over18 // ignore: cast_nullable_to_non_nullable
               as bool,
-      parentWhitelistStatus: null == parentWhitelistStatus
-          ? _value.parentWhitelistStatus
-          : parentWhitelistStatus // ignore: cast_nullable_to_non_nullable
-              as String,
       permalink: null == permalink
           ? _value.permalink
           : permalink // ignore: cast_nullable_to_non_nullable
@@ -673,10 +670,6 @@ class _$RedditLinkDataCopyWithImpl<$Res, $Val extends RedditLinkData>
           ? _value.pinned
           : pinned // ignore: cast_nullable_to_non_nullable
               as bool,
-      pwls: null == pwls
-          ? _value.pwls
-          : pwls // ignore: cast_nullable_to_non_nullable
-              as int,
       quarantine: null == quarantine
           ? _value.quarantine
           : quarantine // ignore: cast_nullable_to_non_nullable
@@ -801,10 +794,18 @@ class _$RedditLinkDataCopyWithImpl<$Res, $Val extends RedditLinkData>
           ? _value.linkFlairText
           : linkFlairText // ignore: cast_nullable_to_non_nullable
               as String?,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as RedditMedia?,
       numReports: freezed == numReports
           ? _value.numReports
           : numReports // ignore: cast_nullable_to_non_nullable
               as int?,
+      parentWhitelistStatus: freezed == parentWhitelistStatus
+          ? _value.parentWhitelistStatus
+          : parentWhitelistStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
       postHint: freezed == postHint
           ? _value.postHint
           : postHint // ignore: cast_nullable_to_non_nullable
@@ -813,6 +814,10 @@ class _$RedditLinkDataCopyWithImpl<$Res, $Val extends RedditLinkData>
           ? _value.preview
           : preview // ignore: cast_nullable_to_non_nullable
               as RedditPreview?,
+      pwls: freezed == pwls
+          ? _value.pwls
+          : pwls // ignore: cast_nullable_to_non_nullable
+              as int?,
       thumbnailHeight: freezed == thumbnailHeight
           ? _value.thumbnailHeight
           : thumbnailHeight // ignore: cast_nullable_to_non_nullable
@@ -858,7 +863,6 @@ class _$RedditLinkDataCopyWithImpl<$Res, $Val extends RedditLinkData>
       gildings: freezed == gildings ? _value.gildings : gildings,
       edited: freezed == edited ? _value.edited : edited,
       likes: freezed == likes ? _value.likes : likes,
-      media: freezed == media ? _value.media : media,
       mediaEmbed: freezed == mediaEmbed ? _value.mediaEmbed : mediaEmbed,
       modNote: freezed == modNote ? _value.modNote : modNote,
       modReasonBy: freezed == modReasonBy ? _value.modReasonBy : modReasonBy,
@@ -885,6 +889,18 @@ class _$RedditLinkDataCopyWithImpl<$Res, $Val extends RedditLinkData>
           freezed == treatmentTags ? _value.treatmentTags : treatmentTags,
       userReports: freezed == userReports ? _value.userReports : userReports,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RedditMediaCopyWith<$Res>? get media {
+    if (_value.media == null) {
+      return null;
+    }
+
+    return $RedditMediaCopyWith<$Res>(_value.media!, (value) {
+      return _then(_value.copyWith(media: value) as $Val);
+    });
   }
 
   @override
@@ -966,11 +982,8 @@ abstract class _$$_RedditLinkDataCopyWith<$Res>
           int numCrossposts,
       @JsonKey(name: 'over_18')
           bool over18,
-      @JsonKey(name: 'parent_whitelist_status')
-          String parentWhitelistStatus,
       String permalink,
       bool pinned,
-      int pwls,
       bool quarantine,
       bool saved,
       int score,
@@ -1021,11 +1034,15 @@ abstract class _$$_RedditLinkDataCopyWith<$Res>
           String? linkFlairTemplateId,
       @JsonKey(name: 'link_flair_text')
           String? linkFlairText,
+      RedditMedia? media,
       @JsonKey(name: 'num_reports')
           int? numReports,
+      @JsonKey(name: 'parent_whitelist_status')
+          String? parentWhitelistStatus,
       @JsonKey(name: 'post_hint')
           String? postHint,
       RedditPreview? preview,
+      int? pwls,
       @JsonKey(name: 'thumbnail_height')
           int? thumbnailHeight,
       @JsonKey(name: 'thumbnail_width')
@@ -1060,7 +1077,6 @@ abstract class _$$_RedditLinkDataCopyWith<$Res>
       Object? gildings,
       Object? edited,
       Object? likes,
-      Object? media,
       @JsonKey(name: 'media_embed')
           Object? mediaEmbed,
       @JsonKey(name: 'mod_note')
@@ -1092,6 +1108,8 @@ abstract class _$$_RedditLinkDataCopyWith<$Res>
       @JsonKey(name: 'user_reports')
           Object? userReports});
 
+  @override
+  $RedditMediaCopyWith<$Res>? get media;
   @override
   $RedditPreviewCopyWith<$Res>? get preview;
 }
@@ -1141,10 +1159,8 @@ class __$$_RedditLinkDataCopyWithImpl<$Res>
     Object? numComments = null,
     Object? numCrossposts = null,
     Object? over18 = null,
-    Object? parentWhitelistStatus = null,
     Object? permalink = null,
     Object? pinned = null,
-    Object? pwls = null,
     Object? quarantine = null,
     Object? saved = null,
     Object? score = null,
@@ -1176,9 +1192,12 @@ class __$$_RedditLinkDataCopyWithImpl<$Res>
     Object? linkFlairType = freezed,
     Object? linkFlairTemplateId = freezed,
     Object? linkFlairText = freezed,
+    Object? media = freezed,
     Object? numReports = freezed,
+    Object? parentWhitelistStatus = freezed,
     Object? postHint = freezed,
     Object? preview = freezed,
+    Object? pwls = freezed,
     Object? thumbnailHeight = freezed,
     Object? thumbnailWidth = freezed,
     Object? selftext = freezed,
@@ -1199,7 +1218,6 @@ class __$$_RedditLinkDataCopyWithImpl<$Res>
     Object? gildings = freezed,
     Object? edited = freezed,
     Object? likes = freezed,
-    Object? media = freezed,
     Object? mediaEmbed = freezed,
     Object? modNote = freezed,
     Object? modReasonBy = freezed,
@@ -1353,10 +1371,6 @@ class __$$_RedditLinkDataCopyWithImpl<$Res>
           ? _value.over18
           : over18 // ignore: cast_nullable_to_non_nullable
               as bool,
-      parentWhitelistStatus: null == parentWhitelistStatus
-          ? _value.parentWhitelistStatus
-          : parentWhitelistStatus // ignore: cast_nullable_to_non_nullable
-              as String,
       permalink: null == permalink
           ? _value.permalink
           : permalink // ignore: cast_nullable_to_non_nullable
@@ -1365,10 +1379,6 @@ class __$$_RedditLinkDataCopyWithImpl<$Res>
           ? _value.pinned
           : pinned // ignore: cast_nullable_to_non_nullable
               as bool,
-      pwls: null == pwls
-          ? _value.pwls
-          : pwls // ignore: cast_nullable_to_non_nullable
-              as int,
       quarantine: null == quarantine
           ? _value.quarantine
           : quarantine // ignore: cast_nullable_to_non_nullable
@@ -1493,10 +1503,18 @@ class __$$_RedditLinkDataCopyWithImpl<$Res>
           ? _value.linkFlairText
           : linkFlairText // ignore: cast_nullable_to_non_nullable
               as String?,
+      media: freezed == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as RedditMedia?,
       numReports: freezed == numReports
           ? _value.numReports
           : numReports // ignore: cast_nullable_to_non_nullable
               as int?,
+      parentWhitelistStatus: freezed == parentWhitelistStatus
+          ? _value.parentWhitelistStatus
+          : parentWhitelistStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
       postHint: freezed == postHint
           ? _value.postHint
           : postHint // ignore: cast_nullable_to_non_nullable
@@ -1505,6 +1523,10 @@ class __$$_RedditLinkDataCopyWithImpl<$Res>
           ? _value.preview
           : preview // ignore: cast_nullable_to_non_nullable
               as RedditPreview?,
+      pwls: freezed == pwls
+          ? _value.pwls
+          : pwls // ignore: cast_nullable_to_non_nullable
+              as int?,
       thumbnailHeight: freezed == thumbnailHeight
           ? _value.thumbnailHeight
           : thumbnailHeight // ignore: cast_nullable_to_non_nullable
@@ -1550,7 +1572,6 @@ class __$$_RedditLinkDataCopyWithImpl<$Res>
       gildings: freezed == gildings ? _value.gildings : gildings,
       edited: freezed == edited ? _value.edited : edited,
       likes: freezed == likes ? _value.likes : likes,
-      media: freezed == media ? _value.media : media,
       mediaEmbed: freezed == mediaEmbed ? _value.mediaEmbed : mediaEmbed,
       modNote: freezed == modNote ? _value.modNote : modNote,
       modReasonBy: freezed == modReasonBy ? _value.modReasonBy : modReasonBy,
@@ -1641,11 +1662,8 @@ class _$_RedditLinkData implements _RedditLinkData {
           required this.numCrossposts,
       @JsonKey(name: 'over_18')
           required this.over18,
-      @JsonKey(name: 'parent_whitelist_status')
-          required this.parentWhitelistStatus,
       required this.permalink,
       required this.pinned,
-      required this.pwls,
       required this.quarantine,
       required this.saved,
       required this.score,
@@ -1696,11 +1714,15 @@ class _$_RedditLinkData implements _RedditLinkData {
           this.linkFlairTemplateId,
       @JsonKey(name: 'link_flair_text')
           this.linkFlairText,
+      this.media,
       @JsonKey(name: 'num_reports')
           this.numReports,
+      @JsonKey(name: 'parent_whitelist_status')
+          this.parentWhitelistStatus,
       @JsonKey(name: 'post_hint')
           this.postHint,
       this.preview,
+      this.pwls,
       @JsonKey(name: 'thumbnail_height')
           this.thumbnailHeight,
       @JsonKey(name: 'thumbnail_width')
@@ -1735,7 +1757,6 @@ class _$_RedditLinkData implements _RedditLinkData {
       this.gildings,
       this.edited,
       this.likes,
-      this.media,
       @JsonKey(name: 'media_embed')
           this.mediaEmbed,
       @JsonKey(name: 'mod_note')
@@ -1862,14 +1883,9 @@ class _$_RedditLinkData implements _RedditLinkData {
   @JsonKey(name: 'over_18')
   final bool over18;
   @override
-  @JsonKey(name: 'parent_whitelist_status')
-  final String parentWhitelistStatus;
-  @override
   final String permalink;
   @override
   final bool pinned;
-  @override
-  final int pwls;
   @override
   final bool quarantine;
   @override
@@ -1953,13 +1969,20 @@ class _$_RedditLinkData implements _RedditLinkData {
   @JsonKey(name: 'link_flair_text')
   final String? linkFlairText;
   @override
+  final RedditMedia? media;
+  @override
   @JsonKey(name: 'num_reports')
   final int? numReports;
+  @override
+  @JsonKey(name: 'parent_whitelist_status')
+  final String? parentWhitelistStatus;
   @override
   @JsonKey(name: 'post_hint')
   final String? postHint;
   @override
   final RedditPreview? preview;
+  @override
+  final int? pwls;
   @override
   @JsonKey(name: 'thumbnail_height')
   final int? thumbnailHeight;
@@ -2016,8 +2039,6 @@ class _$_RedditLinkData implements _RedditLinkData {
   @override
   final Object? likes;
   @override
-  final Object? media;
-  @override
   @JsonKey(name: 'media_embed')
   final Object? mediaEmbed;
   @override
@@ -2065,7 +2086,7 @@ class _$_RedditLinkData implements _RedditLinkData {
 
   @override
   String toString() {
-    return 'RedditLinkData(id: $id, allowLiveComments: $allowLiveComments, archived: $archived, author: $author, authorIsBlocked: $authorIsBlocked, authorFullname: $authorFullname, authorPatreonFlair: $authorPatreonFlair, authorPremium: $authorPremium, canGild: $canGild, canModPost: $canModPost, clicked: $clicked, contestMode: $contestMode, created: $created, createdUtc: $createdUtc, domain: $domain, downs: $downs, gilded: $gilded, hidden: $hidden, hideScore: $hideScore, isCreatedFromAdsUi: $isCreatedFromAdsUi, isCrosspostable: $isCrosspostable, isMeta: $isMeta, isOriginalContent: $isOriginalContent, isRedditMediaDomain: $isRedditMediaDomain, isRobotIndexable: $isRobotIndexable, isSelf: $isSelf, isVideo: $isVideo, locked: $locked, mediaOnly: $mediaOnly, name: $name, noFollow: $noFollow, numComments: $numComments, numCrossposts: $numCrossposts, over18: $over18, parentWhitelistStatus: $parentWhitelistStatus, permalink: $permalink, pinned: $pinned, pwls: $pwls, quarantine: $quarantine, saved: $saved, score: $score, sendReplies: $sendReplies, spoiler: $spoiler, stickied: $stickied, subreddit: $subreddit, subredditId: $subredditId, subredditNamePrefixed: $subredditNamePrefixed, subredditSubscribers: $subredditSubscribers, subredditType: $subredditType, thumbnail: $thumbnail, title: $title, totalAwardsReceived: $totalAwardsReceived, ups: $ups, upvoteRatio: $upvoteRatio, url: $url, visited: $visited, whitelistStatus: $whitelistStatus, wls: $wls, authorFlairBackgroundColor: $authorFlairBackgroundColor, authorFlairCssClass: $authorFlairCssClass, authorFlairText: $authorFlairText, authorFlairTextColor: $authorFlairTextColor, authorFlairType: $authorFlairType, linkFlairBackgroundColor: $linkFlairBackgroundColor, linkFlairCssClass: $linkFlairCssClass, linkFlairTextColor: $linkFlairTextColor, linkFlairType: $linkFlairType, linkFlairTemplateId: $linkFlairTemplateId, linkFlairText: $linkFlairText, numReports: $numReports, postHint: $postHint, preview: $preview, thumbnailHeight: $thumbnailHeight, thumbnailWidth: $thumbnailWidth, selftext: $selftext, selftextHtml: $selftextHtml, viewCount: $viewCount, allAwardings: $allAwardings, awarders: $awarders, approvedAtUtc: $approvedAtUtc, approvedBy: $approvedBy, authorFlairRichText: $authorFlairRichText, authorFlairTemplateId: $authorFlairTemplateId, bannedAtUtc: $bannedAtUtc, bannedBy: $bannedBy, category: $category, contentCategories: $contentCategories, discussionType: $discussionType, distinguished: $distinguished, gildings: $gildings, edited: $edited, likes: $likes, media: $media, mediaEmbed: $mediaEmbed, modNote: $modNote, modReasonBy: $modReasonBy, modReasonTitle: $modReasonTitle, modReports: $modReports, reportReasons: $reportReasons, removalReason: $removalReason, removedBy: $removedBy, removedByCategory: $removedByCategory, secureMedia: $secureMedia, secureMediaEmbed: $secureMediaEmbed, suggestedSort: $suggestedSort, topAwardedType: $topAwardedType, treatmentTags: $treatmentTags, userReports: $userReports)';
+    return 'RedditLinkData(id: $id, allowLiveComments: $allowLiveComments, archived: $archived, author: $author, authorIsBlocked: $authorIsBlocked, authorFullname: $authorFullname, authorPatreonFlair: $authorPatreonFlair, authorPremium: $authorPremium, canGild: $canGild, canModPost: $canModPost, clicked: $clicked, contestMode: $contestMode, created: $created, createdUtc: $createdUtc, domain: $domain, downs: $downs, gilded: $gilded, hidden: $hidden, hideScore: $hideScore, isCreatedFromAdsUi: $isCreatedFromAdsUi, isCrosspostable: $isCrosspostable, isMeta: $isMeta, isOriginalContent: $isOriginalContent, isRedditMediaDomain: $isRedditMediaDomain, isRobotIndexable: $isRobotIndexable, isSelf: $isSelf, isVideo: $isVideo, locked: $locked, mediaOnly: $mediaOnly, name: $name, noFollow: $noFollow, numComments: $numComments, numCrossposts: $numCrossposts, over18: $over18, permalink: $permalink, pinned: $pinned, quarantine: $quarantine, saved: $saved, score: $score, sendReplies: $sendReplies, spoiler: $spoiler, stickied: $stickied, subreddit: $subreddit, subredditId: $subredditId, subredditNamePrefixed: $subredditNamePrefixed, subredditSubscribers: $subredditSubscribers, subredditType: $subredditType, thumbnail: $thumbnail, title: $title, totalAwardsReceived: $totalAwardsReceived, ups: $ups, upvoteRatio: $upvoteRatio, url: $url, visited: $visited, whitelistStatus: $whitelistStatus, wls: $wls, authorFlairBackgroundColor: $authorFlairBackgroundColor, authorFlairCssClass: $authorFlairCssClass, authorFlairText: $authorFlairText, authorFlairTextColor: $authorFlairTextColor, authorFlairType: $authorFlairType, linkFlairBackgroundColor: $linkFlairBackgroundColor, linkFlairCssClass: $linkFlairCssClass, linkFlairTextColor: $linkFlairTextColor, linkFlairType: $linkFlairType, linkFlairTemplateId: $linkFlairTemplateId, linkFlairText: $linkFlairText, media: $media, numReports: $numReports, parentWhitelistStatus: $parentWhitelistStatus, postHint: $postHint, preview: $preview, pwls: $pwls, thumbnailHeight: $thumbnailHeight, thumbnailWidth: $thumbnailWidth, selftext: $selftext, selftextHtml: $selftextHtml, viewCount: $viewCount, allAwardings: $allAwardings, awarders: $awarders, approvedAtUtc: $approvedAtUtc, approvedBy: $approvedBy, authorFlairRichText: $authorFlairRichText, authorFlairTemplateId: $authorFlairTemplateId, bannedAtUtc: $bannedAtUtc, bannedBy: $bannedBy, category: $category, contentCategories: $contentCategories, discussionType: $discussionType, distinguished: $distinguished, gildings: $gildings, edited: $edited, likes: $likes, mediaEmbed: $mediaEmbed, modNote: $modNote, modReasonBy: $modReasonBy, modReasonTitle: $modReasonTitle, modReports: $modReports, reportReasons: $reportReasons, removalReason: $removalReason, removedBy: $removedBy, removedByCategory: $removedByCategory, secureMedia: $secureMedia, secureMediaEmbed: $secureMediaEmbed, suggestedSort: $suggestedSort, topAwardedType: $topAwardedType, treatmentTags: $treatmentTags, userReports: $userReports)';
   }
 
   @override
@@ -2126,12 +2147,9 @@ class _$_RedditLinkData implements _RedditLinkData {
             (identical(other.numCrossposts, numCrossposts) ||
                 other.numCrossposts == numCrossposts) &&
             (identical(other.over18, over18) || other.over18 == over18) &&
-            (identical(other.parentWhitelistStatus, parentWhitelistStatus) ||
-                other.parentWhitelistStatus == parentWhitelistStatus) &&
             (identical(other.permalink, permalink) ||
                 other.permalink == permalink) &&
             (identical(other.pinned, pinned) || other.pinned == pinned) &&
-            (identical(other.pwls, pwls) || other.pwls == pwls) &&
             (identical(other.quarantine, quarantine) ||
                 other.quarantine == quarantine) &&
             (identical(other.saved, saved) || other.saved == saved) &&
@@ -2183,11 +2201,15 @@ class _$_RedditLinkData implements _RedditLinkData {
                 other.linkFlairTextColor == linkFlairTextColor) &&
             (identical(other.linkFlairType, linkFlairType) ||
                 other.linkFlairType == linkFlairType) &&
-            (identical(other.linkFlairTemplateId, linkFlairTemplateId) || other.linkFlairTemplateId == linkFlairTemplateId) &&
+            (identical(other.linkFlairTemplateId, linkFlairTemplateId) ||
+                other.linkFlairTemplateId == linkFlairTemplateId) &&
             (identical(other.linkFlairText, linkFlairText) || other.linkFlairText == linkFlairText) &&
+            (identical(other.media, media) || other.media == media) &&
             (identical(other.numReports, numReports) || other.numReports == numReports) &&
+            (identical(other.parentWhitelistStatus, parentWhitelistStatus) || other.parentWhitelistStatus == parentWhitelistStatus) &&
             (identical(other.postHint, postHint) || other.postHint == postHint) &&
             (identical(other.preview, preview) || other.preview == preview) &&
+            (identical(other.pwls, pwls) || other.pwls == pwls) &&
             (identical(other.thumbnailHeight, thumbnailHeight) || other.thumbnailHeight == thumbnailHeight) &&
             (identical(other.thumbnailWidth, thumbnailWidth) || other.thumbnailWidth == thumbnailWidth) &&
             (identical(other.selftext, selftext) || other.selftext == selftext) &&
@@ -2208,7 +2230,6 @@ class _$_RedditLinkData implements _RedditLinkData {
             const DeepCollectionEquality().equals(other.gildings, gildings) &&
             const DeepCollectionEquality().equals(other.edited, edited) &&
             const DeepCollectionEquality().equals(other.likes, likes) &&
-            const DeepCollectionEquality().equals(other.media, media) &&
             const DeepCollectionEquality().equals(other.mediaEmbed, mediaEmbed) &&
             const DeepCollectionEquality().equals(other.modNote, modNote) &&
             const DeepCollectionEquality().equals(other.modReasonBy, modReasonBy) &&
@@ -2264,10 +2285,8 @@ class _$_RedditLinkData implements _RedditLinkData {
         numComments,
         numCrossposts,
         over18,
-        parentWhitelistStatus,
         permalink,
         pinned,
-        pwls,
         quarantine,
         saved,
         score,
@@ -2299,9 +2318,12 @@ class _$_RedditLinkData implements _RedditLinkData {
         linkFlairType,
         linkFlairTemplateId,
         linkFlairText,
+        media,
         numReports,
+        parentWhitelistStatus,
         postHint,
         preview,
+        pwls,
         thumbnailHeight,
         thumbnailWidth,
         selftext,
@@ -2322,7 +2344,6 @@ class _$_RedditLinkData implements _RedditLinkData {
         const DeepCollectionEquality().hash(gildings),
         const DeepCollectionEquality().hash(edited),
         const DeepCollectionEquality().hash(likes),
-        const DeepCollectionEquality().hash(media),
         const DeepCollectionEquality().hash(mediaEmbed),
         const DeepCollectionEquality().hash(modNote),
         const DeepCollectionEquality().hash(modReasonBy),
@@ -2413,11 +2434,8 @@ abstract class _RedditLinkData implements RedditLinkData {
           required final int numCrossposts,
       @JsonKey(name: 'over_18')
           required final bool over18,
-      @JsonKey(name: 'parent_whitelist_status')
-          required final String parentWhitelistStatus,
       required final String permalink,
       required final bool pinned,
-      required final int pwls,
       required final bool quarantine,
       required final bool saved,
       required final int score,
@@ -2468,11 +2486,15 @@ abstract class _RedditLinkData implements RedditLinkData {
           final String? linkFlairTemplateId,
       @JsonKey(name: 'link_flair_text')
           final String? linkFlairText,
+      final RedditMedia? media,
       @JsonKey(name: 'num_reports')
           final int? numReports,
+      @JsonKey(name: 'parent_whitelist_status')
+          final String? parentWhitelistStatus,
       @JsonKey(name: 'post_hint')
           final String? postHint,
       final RedditPreview? preview,
+      final int? pwls,
       @JsonKey(name: 'thumbnail_height')
           final int? thumbnailHeight,
       @JsonKey(name: 'thumbnail_width')
@@ -2507,7 +2529,6 @@ abstract class _RedditLinkData implements RedditLinkData {
       final Object? gildings,
       final Object? edited,
       final Object? likes,
-      final Object? media,
       @JsonKey(name: 'media_embed')
           final Object? mediaEmbed,
       @JsonKey(name: 'mod_note')
@@ -2634,14 +2655,9 @@ abstract class _RedditLinkData implements RedditLinkData {
   @JsonKey(name: 'over_18')
   bool get over18;
   @override
-  @JsonKey(name: 'parent_whitelist_status')
-  String get parentWhitelistStatus;
-  @override
   String get permalink;
   @override
   bool get pinned;
-  @override
-  int get pwls;
   @override
   bool get quarantine;
   @override
@@ -2724,13 +2740,20 @@ abstract class _RedditLinkData implements RedditLinkData {
   @JsonKey(name: 'link_flair_text')
   String? get linkFlairText;
   @override
+  RedditMedia? get media;
+  @override
   @JsonKey(name: 'num_reports')
   int? get numReports;
+  @override
+  @JsonKey(name: 'parent_whitelist_status')
+  String? get parentWhitelistStatus;
   @override
   @JsonKey(name: 'post_hint')
   String? get postHint;
   @override
   RedditPreview? get preview;
+  @override
+  int? get pwls;
   @override
   @JsonKey(name: 'thumbnail_height')
   int? get thumbnailHeight;
@@ -2785,8 +2808,6 @@ abstract class _RedditLinkData implements RedditLinkData {
   Object? get edited;
   @override
   Object? get likes;
-  @override
-  Object? get media;
   @override
   @JsonKey(name: 'media_embed')
   Object? get mediaEmbed;

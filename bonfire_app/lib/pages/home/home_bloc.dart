@@ -1,7 +1,6 @@
-// import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:bonfire_app/models/models.dart';
 import 'package:bonfire_app/pages/home/home_state.dart';
+import 'package:bonfire_app/utilities/utilities.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reddit_client/reddit_client.dart';
 
@@ -23,7 +22,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     try {
       final posts = await _redditClient.getFrontpagePosts();
-      print(posts.data.children.map((c) => c.data.postHint).toList());
+      print(posts.data.children
+          .map((c) => {
+                'hint': c.data.postHint,
+                'previewUrl': c.data.preview?.images.isNotEmpty == true
+                    ? c.data.preview?.images.first.source.url
+                    : null,
+              })
+          .toList());
       emit(state.copyWith(
         posts: NetworkData.data(
           posts.data.children.map((c) => c.data).toList(),

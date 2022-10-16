@@ -2,6 +2,7 @@ import 'package:bonfire_app/components/components.dart';
 import 'package:bonfire_app/main.dart';
 import 'package:bonfire_app/pages/home/home_bloc.dart';
 import 'package:bonfire_app/pages/home/home_state.dart';
+import 'package:bonfire_app/utilities/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -60,7 +61,7 @@ class _PostList extends StatelessWidget {
         final post = posts[index];
         return Padding(
           padding: const EdgeInsets.all(15.0),
-          child: post.postHint == 'image'
+          child: post.previewImgUrl != null
               ? ImagePostCard(post: post)
               : TextPostCard(post: post),
         );
