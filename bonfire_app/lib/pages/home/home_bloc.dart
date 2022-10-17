@@ -1,6 +1,5 @@
 import 'package:bonfire_app/models/models.dart';
 import 'package:bonfire_app/pages/home/home_state.dart';
-import 'package:bonfire_app/utilities/utilities.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reddit_client/reddit_client.dart';
 

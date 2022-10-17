@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:bonfire_app/components/components.dart';
+import 'package:bonfire_app/models/models.dart';
 import 'package:bonfire_app/utilities/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:reddit_client/reddit_client.dart';
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class ImagePostCard extends StatelessWidget {
   const ImagePostCard({
@@ -29,8 +31,9 @@ class ImagePostCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Theme(
-                data:
-                    Theme.of(context).copyWith(canvasColor: Colors.transparent),
+                data: Theme.of(context).copyWith(
+                  canvasColor: Colors.transparent,
+                ),
                 child: Chip(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -42,6 +45,27 @@ class ImagePostCard extends StatelessWidget {
               ),
             ),
           ),
+          if (post.linkType == const LinkType.link())
+            Positioned(
+              right: 1.0,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Theme(
+                  data: Theme.of(context)
+                      .copyWith(canvasColor: Colors.transparent),
+                  child: InkWell(
+                    onTap: () => _openUrl(context: context, url: post.url),
+                    child: Chip(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      backgroundColor: Colors.white.withOpacity(0.9),
+                      label: Icon(Icons.link_outlined),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           Positioned(
             bottom: 1.0,
             left: 0.0,
@@ -51,6 +75,19 @@ class ImagePostCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _openUrl({
+    required BuildContext context,
+    required String url,
+  }) async {
+    if (!await url_launcher.launchUrl(Uri.parse(url))) {
+      BottomSheetView.show(
+        context: context,
+        title: 'Error',
+        message: 'Couldn\'t open link: $url',
+      );
+    }
   }
 }
 
@@ -78,6 +115,8 @@ class ImagePostInfo extends StatelessWidget {
           children: [
             Text(
               post.title,
+              maxLines: 8,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
