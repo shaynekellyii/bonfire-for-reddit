@@ -20,13 +20,16 @@ class BaseCard extends StatelessWidget {
       child: isSquare
           ? AspectRatio(
               aspectRatio: 1.0,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15.0),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: child,
                   ),
-                  child: child,
                 ),
               ),
             )

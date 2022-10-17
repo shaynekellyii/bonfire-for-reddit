@@ -2,8 +2,10 @@
 
 import 'package:bonfire_app/components/components.dart';
 import 'package:bonfire_app/models/models.dart';
+import 'package:bonfire_app/pages/image_viewer/image_viewer_page.dart';
 import 'package:bonfire_app/utilities/utilities.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:reddit_client/reddit_client.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
@@ -15,6 +17,16 @@ class ImagePostCard extends StatelessWidget {
 
   final RedditLinkData post;
 
+  IconData? get iconData {
+    return post.linkType.when(
+      imageLink: () => Icons.image_outlined,
+      hostedVideo: () => Icons.play_circle_outline_outlined,
+      richVideo: () => Icons.play_circle_outline_outlined,
+      link: () => Icons.link_outlined,
+      none: () => null,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final previewUrl = post.previewImgUrl;
@@ -23,8 +35,16 @@ class ImagePostCard extends StatelessWidget {
         children: [
           if (previewUrl != null)
             Positioned.fill(
-              child: SizedBox(
-                child: Image.network(previewUrl, fit: BoxFit.cover),
+              child: InkWell(
+                onTap: post.linkType == const LinkType.imageLink()
+                    ? () => _onImageTap(context)
+                    : null,
+                child: SizedBox(
+                  child: Hero(
+                    tag: post.url,
+                    child: Image.network(previewUrl, fit: BoxFit.cover),
+                  ),
+                ),
               ),
             ),
           Positioned(
@@ -45,7 +65,7 @@ class ImagePostCard extends StatelessWidget {
               ),
             ),
           ),
-          if (post.linkType == const LinkType.link())
+          if (post.linkType != const LinkType.none())
             Positioned(
               right: 1.0,
               child: Padding(
@@ -54,13 +74,15 @@ class ImagePostCard extends StatelessWidget {
                   data: Theme.of(context)
                       .copyWith(canvasColor: Colors.transparent),
                   child: InkWell(
-                    onTap: () => _openUrl(context: context, url: post.url),
+                    onTap: () => post.linkType == const LinkType.imageLink()
+                        ? _onImageTap(context)
+                        : _openUrl(context: context, url: post.url),
                     child: Chip(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       backgroundColor: Colors.white.withOpacity(0.9),
-                      label: Icon(Icons.link_outlined),
+                      label: Icon(iconData!),
                     ),
                   ),
                 ),
@@ -74,6 +96,13 @@ class ImagePostCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _onImageTap(BuildContext context) {
+    GoRouter.of(context).push(
+      ImageViewerPage.routeName,
+      extra: ImageViewerPageArgs(initialImageUrl: post.url),
     );
   }
 

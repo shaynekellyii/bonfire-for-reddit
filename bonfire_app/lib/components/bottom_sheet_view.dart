@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BottomSheetView extends StatelessWidget {
   const BottomSheetView({
@@ -55,7 +56,7 @@ class BottomSheetView extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => GoRouter.of(context).pop(),
                   child: const Text('Ok'),
                 ),
               )
